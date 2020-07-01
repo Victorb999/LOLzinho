@@ -1,11 +1,11 @@
 <template>
   <nav>
 
-    <v-toolbar dense flat>
+    <v-toolbar dense flat class="theme--dark toolbar-lol">
       
       <v-toolbar-title class="text-uppercase">
-        <span >Lol</span>
-        <span class="font-weight-light">zinho</span>
+        <span class="lol">Lol</span>
+        <span class="zinho">zinho</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
      
@@ -38,5 +38,3 @@ export default {
 }
 </script>
 
-<style>
-</style>
