@@ -8,16 +8,6 @@ export default new Vuetify({
     iconfont: 'md',
   },
   theme: {
-    themes: {
-      light: {
-        primary: '#9652ff',
-        success: '#3cd1c2',
-        info: '#ffaa2c',
-        error: '#f83e70',
-        black: '#121216',
-        bar: '#23232d',
-        side: '#191922'
-      },
-    },
+    dark: true,
   },
 })

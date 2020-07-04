@@ -2,9 +2,16 @@
   <div class="page">
     <h1 class="subheading">Champions</h1>
 
-    <div class="busca">
-      <input type="text" v-model="champ" @change="filtraChamp" />
-    </div>
+    <v-layout class="busca" row wrap justify-center>
+      <v-col sm="6" xs="12" md="6" >
+        <v-text-field label="Busque um campeão" v-model="champ"
+        append-icon="mdi-magnify"
+        placeholder="Digite o nome do champ que você está querendo"
+        filled class="theme--dark input-search"
+        outlined flat 
+        ></v-text-field>
+      </v-col>
+    </v-layout>
 
     <v-container class="my-5" v-if="rito.length > 0">
     <v-layout row wrap class="justify-center">
@@ -35,7 +42,12 @@ export default {
   data() {
     return {
       rito:[],
-      champ: ""
+      champ: "",
+    }
+  },
+  watch: {
+    champ: function () {
+      this.filtraChamp()
     }
   },
   async created(){
@@ -57,7 +69,7 @@ export default {
     filtraChamp(){
       if(this.champ.length >= 3){       
         const filtroChamp = this.rito.filter( nome => {        
-         return nome.id.indexOf(this.champ) > -1
+         return nome.id.toLowerCase().indexOf(this.champ.toLowerCase()) > -1
         })
         if(Object.keys(filtroChamp).length === 0){
           console.log("Nenhum encontrado")
