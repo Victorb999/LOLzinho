@@ -55,7 +55,7 @@ export default {
     
     const ritogomes = new ApiRiot()
     if(Object.keys(this.$store.state.campeoes).length === 0){
-      this.rito=await ritogomes.getChampion() 
+      this.rito=await ritogomes.getChampions() 
       this.addChamps(this.rito)
     }
     else{

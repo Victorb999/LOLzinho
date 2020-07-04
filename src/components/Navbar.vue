@@ -4,8 +4,10 @@
     <v-toolbar dense flat class="theme--dark toolbar-lol">
       
       <v-toolbar-title class="text-uppercase">
-        <span class="lol">Lol</span>
-        <span class="zinho">zinho</span>
+        <router-link to="/" class="limpa">
+          <span class="lol">Lol</span>
+          <span class="zinho">zinho</span>
+        </router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
      
