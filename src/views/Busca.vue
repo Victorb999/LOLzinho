@@ -17,15 +17,16 @@
     <v-layout row wrap class="justify-center">
      <v-flex xs6 sm3 md2 
      v-for="champs in rito" 
-     :key="champs.id" 
+     :key="champs.id"
      class="champ-container d-flex align-center flex-wrap flex-column">       
-        <v-avatar size="100">
-        <img               
-          :src="champs.squareimg"
-          :alt="champs.id"
-        />
-        </v-avatar>
-      
+        <router-link :to="champs.url">
+          <v-avatar size="100">
+          <img               
+            :src="champs.squareimg"
+            :alt="champs.id"
+          />
+          </v-avatar>
+        </router-link>
         <div class="subheading">{{champs.id}}</div>
         <div class="caption">{{champs.title}}</div>
       </v-flex>

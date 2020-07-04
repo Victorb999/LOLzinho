@@ -38,6 +38,7 @@ class ApiRiot{
             blurb: championsMap[champ].blurb,
             tags: championsMap[champ].tags,
             partype: championsMap[champ].partype,
+            url: `/champion/${championsMap[champ].id}`
           })
         })
   
