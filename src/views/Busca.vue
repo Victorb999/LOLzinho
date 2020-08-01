@@ -43,17 +43,29 @@ export default {
   data() {
     return {
       rito:[],
-      champ: "",
+      champ: ""
     }
   },
   watch: {
     champ: function () {
       this.filtraChamp()
+    },
+    lang:{
+      async handler(){
+        const ritogomes = new ApiRiot(this.lang)
+        this.rito= await ritogomes.getChampions() 
+        this.addChamps(this.rito)
+      }
+    }
+  },
+  computed:{
+    lang(){
+      return this.$store.state.language
     }
   },
   async created(){
     
-    const ritogomes = new ApiRiot()
+    const ritogomes = new ApiRiot(this.lang)
     if(Object.keys(this.$store.state.campeoes).length === 0){
       this.rito=await ritogomes.getChampions() 
       this.addChamps(this.rito)

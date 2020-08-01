@@ -1,7 +1,7 @@
 <template>
   <nav>
 
-    <v-toolbar dense flat class="theme--dark toolbar-lol">
+    <v-toolbar flat class="theme--dark toolbar-lol">
       
       <v-toolbar-title class="text-uppercase">
         <router-link to="/" class="limpa">
@@ -10,6 +10,17 @@
         </router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
+
+      
+        <v-select
+          :items="languages"
+          label="Selecione um idioma"
+          dense
+          height="20"
+          class="idioma"
+          :change="TrocaLingua()"
+          v-model="lang"          
+        ></v-select>
      
     </v-toolbar>    
 
@@ -31,10 +42,30 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex'
+import ApiRiot from "@/Api/riot"
 export default {
   data() {
     return {
-            
+      languages: [],
+      lang:""
+    }
+  },
+  async beforeCreate(){
+    const ritogomes = new ApiRiot(this.$store.state.language)   
+    await ritogomes.getLanguages().then((resp)=>{
+      this.languages= resp
+    })    
+    this.lang = this.$store.state.language
+  },
+  methods:{
+    ...mapActions([
+      'addLanguage'
+    ]),
+    TrocaLingua(){
+      if(this.lang !== ''){
+        this.addLanguage(this.lang)
+      }
     }
   }
 }

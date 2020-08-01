@@ -58,8 +58,8 @@
           <template v-slot:activator="{ on, attrs }">
           <v-card          
               class="ma-4"
-              height="200"
-              width="100"
+              height="400"
+              width="200"
               :img="img"
               v-bind="attrs"
               v-on="on"
@@ -101,9 +101,21 @@ export default {
       urlpassive:""
     }
   },
+  watch: {
+    lang:{
+      async handler(){
+        await this.setaChamp()
+      }
+    }
+  },
+  computed:{
+    lang(){
+      return this.$store.state.language
+    }
+  },
   async beforeCreate(){
     this.champId = this.$route.params.id
-    const ritogomes = new ApiRiot()   
+    const ritogomes = new ApiRiot(this.$store.state.language)   
     await ritogomes.getChampion(this.champId).then((resp)=>{
       this.champ= resp
       resp.skins.map( skin =>{
@@ -123,6 +135,26 @@ export default {
     
   },
   methods:{
+    async setaChamp(){
+      this.champId = this.$route.params.id
+        const ritogomes = new ApiRiot(this.$store.state.language)   
+        await ritogomes.getChampion(this.champId).then((resp)=>{
+          this.champ= resp
+          resp.skins.map( skin =>{
+            this.imgSplashs = [...this.imgSplashs,ritogomes.getUrlSplash(resp.id,skin.num)]
+          })
+
+          resp.skins.map( skin =>{
+            this.imgLoading = [...this.imgLoading,ritogomes.getUrlLoad(resp.id,skin.num)]
+          })
+
+          this.cssHead =  {
+              backgroundImage: `url(${this.imgSplashs[0]})`
+          }
+          this.urlspell = ritogomes.getUrlSpell()
+          this.urlpassive = ritogomes.getUrlPassive()
+        })  
+    },
     setaModal(i){
       this.modal={
         img:this.imgSplashs[i],

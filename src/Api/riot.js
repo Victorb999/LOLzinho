@@ -1,11 +1,11 @@
 import axios from "axios"
 import {
-  CDN_URL
+  CDN_URL,LANGUAGES_URL
 } from "./config.js"
 
 class ApiRiot{
-  constructor() {    
-    this.language = "pt_BR"
+  constructor(lang) {    
+    this.language = lang
     this.patch = "10.15.1"
     this.urlpadrao = `${CDN_URL}/${this.patch}/data/${this.language}`
     this.urlImgSquare = `${CDN_URL}/${this.patch}/img/champion`
@@ -68,6 +68,24 @@ class ApiRiot{
       }).catch(err => {champion = err})
 
       return champion[id]
+  }
+
+  async getLanguages(){
+    let language = []
+    await axios({
+        method: "get",
+        url: LANGUAGES_URL
+      }).then((response)=>{
+        language = response.data
+      }).catch(err => {language = err})
+
+    // let Listlang = {}
+    // Object.keys(language).map((oxi)=>{    
+    //   Listlang = {...Listlang,oxi}
+    //   console.log(Listlang)      
+    // })
+    // console.log(Listlang)
+    return language
   }
   
 }
