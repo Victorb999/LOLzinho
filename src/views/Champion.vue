@@ -8,7 +8,45 @@
     </div>
   </div>
 
-  <div>
+  <v-container class="skills">
+    <h2>Habilidades</h2>
+    <v-row>
+      <v-col>
+        <img :src="urlpassive+champ.passive.image.full" alt="skills.id">
+        <h3>{{champ.passive.name}}</h3>
+        <p>{{champ.passive.description}}</p>
+      </v-col>
+      <v-col v-for="(skills,index0) in champ.spells" :key="index0">
+        <img :src="urlspell+skills.image.full" alt="skills.id">
+        <h3>{{skills.name}}</h3>
+        <p>{{skills.description}}</p>
+      </v-col>
+    </v-row>
+  </v-container>
+
+   <v-container>
+    <v-row class="dicas">
+    <v-col class="dicacom mb-6" >
+      <h2>Dicas para jogar com</h2>
+      <ul>
+        <li v-for="(dicas,index1) in champ.allytips" :key="index1">
+          <span>{{dicas}}</span>
+        </li>
+      </ul>
+    </v-col>
+
+    <v-col class="dicacontra mb-6">
+      <h2>Dicas para jogar contra</h2>
+      <ul>
+        <li v-for="(dicas,index2) in champ.enemytips" :key="index2">
+          <span>{{dicas}}</span>
+        </li>
+      </ul>
+    </v-col>
+    </v-row>
+  </v-container>
+
+  <v-container>
     <h2 class="pt-2 px-5">Skins</h2>
     <v-slide-group show-arrows v-model="imgLoading">
       <v-slide-item
@@ -40,18 +78,9 @@
         </v-dialog>
       </v-slide-item>
       </v-slide-group>
-  </div>
-     
+  </v-container>
 
-  <!-- <v-carousel height="">
-    <v-carousel-item
-      v-for="(img,i) in imgLoading"
-      :key="i"
-      :src="img"
-      reverse-transition="fade-transition"
-      transition="fade-transition"
-    ></v-carousel-item>
-  </v-carousel> -->
+ 
 
 </div>
 </template>
@@ -67,7 +96,9 @@ export default {
       imgLoading:[],
       cssHead:{},
       dialog:false,
-      modal:{}
+      modal:{},
+      urlspell:"",
+      urlpassive:""
     }
   },
   async beforeCreate(){
@@ -86,6 +117,8 @@ export default {
       this.cssHead =  {
           backgroundImage: `url(${this.imgSplashs[0]})`
       }
+      this.urlspell = ritogomes.getUrlSpell()
+      this.urlpassive = ritogomes.getUrlPassive()
     })    
     
   },

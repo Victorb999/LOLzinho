@@ -6,7 +6,7 @@ import {
 class ApiRiot{
   constructor() {    
     this.language = "pt_BR"
-    this.patch = "10.13.1"
+    this.patch = "10.15.1"
     this.urlpadrao = `${CDN_URL}/${this.patch}/data/${this.language}`
     this.urlImgSquare = `${CDN_URL}/${this.patch}/img/champion`
     this.urlChampion = `${this.urlpadrao}/champion`
@@ -17,6 +17,13 @@ class ApiRiot{
   }
   getUrlLoad(id,numero){
     return `${CDN_URL}/img/champion/loading/${id}_${numero}.jpg`
+  }
+
+  getUrlPassive(){
+    return `${CDN_URL}/${this.patch}/img/passive/`
+  }
+  getUrlSpell(){
+    return `${CDN_URL}/${this.patch}/img/spell/`
   }
 
   async getChampions(){
