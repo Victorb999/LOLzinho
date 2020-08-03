@@ -1,12 +1,12 @@
 import axios from "axios"
 import {
-  CDN_URL,LANGUAGES_URL
+  CDN_URL,LANGUAGES_URL,VERSIONS_URL
 } from "./config.js"
 
 class ApiRiot{
-  constructor(lang) {    
+  constructor(lang,patch) {    
     this.language = lang
-    this.patch = "10.15.1"
+    this.patch = patch
     this.urlpadrao = `${CDN_URL}/${this.patch}/data/${this.language}`
     this.urlImgSquare = `${CDN_URL}/${this.patch}/img/champion`
     this.urlChampion = `${this.urlpadrao}/champion`
@@ -26,16 +26,9 @@ class ApiRiot{
     return `${CDN_URL}/${this.patch}/img/spell/`
   }
 
+  //pega todos campeos
   async getChampions(){
    
-      // await axios({
-      //   method: "get",
-      //   url: `${this.urlpadrao}/champion.json`
-      // }).then(()=>{
-      //   //console.log("aa",response.data.data)
-      //   return "coco"
-      // }).catch(err => {return err})
-      
     let response = await axios({
       method: "get",
       url: `${this.urlpadrao}/champion.json`
@@ -43,7 +36,8 @@ class ApiRiot{
 
     let championsMap = response.data.data
     let ListChamp = []
-    //console.log(championsMap)
+
+    //transforma num array com as infos importantes
     Object.keys(championsMap).map((champ)=>{          
       ListChamp.push({
         id: championsMap[champ].id,
@@ -58,6 +52,7 @@ class ApiRiot{
     return ListChamp   
   }
 
+  //busca o champ pelo id
   async getChampion(id){
     let champion = {}
     await axios({
@@ -65,11 +60,12 @@ class ApiRiot{
         url: `${this.urlChampion}/${id}.json`
       }).then((response)=>{
         champion = response.data.data
-      }).catch(err => {champion = err})
+      }).catch(() => {champion[id]= false})
 
       return champion[id]
   }
 
+  //retorna as linguagens disponíveis
   async getLanguages(){
     let language = []
     await axios({
@@ -79,14 +75,22 @@ class ApiRiot{
         language = response.data
       }).catch(err => {language = err})
 
-    // let Listlang = {}
-    // Object.keys(language).map((oxi)=>{    
-    //   Listlang = {...Listlang,oxi}
-    //   console.log(Listlang)      
-    // })
-    // console.log(Listlang)
     return language
   }
+
+  //retorna os patchs
+  async getPatchs(){
+    let patch = []
+    await axios({
+        method: "get",
+        url: VERSIONS_URL
+      }).then((response)=>{
+        patch = response.data
+      }).catch(err => {patch = err})
+
+    return patch
+  }
+
   
 }
 

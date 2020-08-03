@@ -12,15 +12,25 @@
       <v-spacer></v-spacer>
 
       
-        <v-select
-          :items="languages"
-          label="Selecione um idioma"
-          dense
-          height="20"
-          class="idioma"
-          :change="TrocaLingua()"
-          v-model="lang"          
-        ></v-select>
+      <v-select
+        :items="languages"
+        label="Selecione um idioma"
+        dense
+        height="20"
+        class="idioma"
+        :change="TrocaLingua()"
+        v-model="lang"          
+      ></v-select>
+
+      <v-select
+        :items="versions"
+        label="Selecione um patch"
+        dense
+        height="20"
+        class="idioma"
+        :change="TrocaPatch()"
+        v-model="patch"          
+      ></v-select>
      
     </v-toolbar>    
 
@@ -48,23 +58,35 @@ export default {
   data() {
     return {
       languages: [],
-      lang:""
+      versions:[],
+      lang:"",
+      patch:""
     }
   },
   async beforeCreate(){
-    const ritogomes = new ApiRiot(this.$store.state.language)   
+    const ritogomes = new ApiRiot(this.$store.state.language,this.$store.state.patch)   
     await ritogomes.getLanguages().then((resp)=>{
       this.languages= resp
     })    
     this.lang = this.$store.state.language
+    await ritogomes.getPatchs().then((resp)=>{
+      this.versions= resp      
+      this.patch = resp[0]
+      this.addPatch(this.patch)    
+    })
   },
   methods:{
     ...mapActions([
-      'addLanguage'
+      'addLanguage','addPatch'
     ]),
     TrocaLingua(){
       if(this.lang !== ''){
         this.addLanguage(this.lang)
+      }
+    },
+    TrocaPatch(){
+      if(this.patch !== ''){
+        this.addPatch(this.patch)
       }
     }
   }

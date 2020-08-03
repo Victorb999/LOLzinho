@@ -15,6 +15,9 @@ export default new Vuex.Store({
     },
     setarlanguage: (state, lang) =>{      
       state.language = lang
+    },
+    setarpatch: (state, lang) =>{      
+      state.patch = lang
     }
   },
   actions: {
@@ -25,6 +28,10 @@ export default new Vuex.Store({
     addLanguage:( {commit},payload)=>{
       //console.log(payload)
       commit('setarlanguage',payload)
+    },
+    addPatch:( {commit},payload)=>{
+      //console.log(payload)
+      commit('setarpatch',payload)
     }
   },
   modules: {

@@ -52,7 +52,14 @@ export default {
     },
     lang:{
       async handler(){
-        const ritogomes = new ApiRiot(this.lang)
+        const ritogomes = new ApiRiot(this.lang,this.patch)
+        this.rito= await ritogomes.getChampions() 
+        this.addChamps(this.rito)
+      }
+    },
+    patch:{
+      async handler(){
+        const ritogomes = new ApiRiot(this.lang,this.patch)
         this.rito= await ritogomes.getChampions() 
         this.addChamps(this.rito)
       }
@@ -61,11 +68,13 @@ export default {
   computed:{
     lang(){
       return this.$store.state.language
+    },
+    patch(){
+      return this.$store.state.patch
     }
   },
   async created(){
-    
-    const ritogomes = new ApiRiot(this.lang)
+    const ritogomes = new ApiRiot(this.lang,this.patch)
     if(Object.keys(this.$store.state.campeoes).length === 0){
       this.rito=await ritogomes.getChampions() 
       this.addChamps(this.rito)
