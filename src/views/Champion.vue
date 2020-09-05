@@ -27,7 +27,7 @@
 
     <v-container>
       <v-row class="dicas">
-      <v-col class="dicacom mb-6" v-if="champ.allytips != ''">
+      <v-col class="dicacom d-12-xs d-12-sm d-12-md" v-if="champ.allytips != ''">
         <h2>Dicas para jogar com</h2>
         <ul>
           <li v-for="(dicas,index1) in champ.allytips" :key="index1">
@@ -36,7 +36,7 @@
         </ul>
       </v-col>
 
-      <v-col class="dicacontra mb-6"  v-if="champ.enemytips != ''">
+      <v-col class="dicacontra d-12-xs d-12-sm d-12-md"  v-if="champ.enemytips != ''">
         <h2>Dicas para jogar contra</h2>
         <ul>
           <li v-for="(dicas,index2) in champ.enemytips" :key="index2">

@@ -14,7 +14,7 @@
       
       <v-select
         :items="languages"
-        label="Selecione um idioma"
+        label="Idioma"
         dense
         height="20"
         class="idioma"
@@ -24,7 +24,7 @@
 
       <v-select
         :items="versions"
-        label="Selecione um patch"
+        label="Patch"
         dense
         height="20"
         class="idioma"

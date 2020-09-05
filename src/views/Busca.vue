@@ -8,19 +8,25 @@
         append-icon="mdi-magnify"
         placeholder="Digite o nome do champ que você está querendo"
         filled class="theme--dark input-search"
-        outlined flat 
+        outlined flat
         ></v-text-field>
       </v-col>
     </v-layout>
 
     <v-container class="my-5" v-if="rito.length > 0">
     <v-layout row wrap class="justify-center">
-     <v-flex xs6 sm3 md2 
+     <v-flex xs5 sm3 md2 
      v-for="champs in rito" 
      :key="champs.id"
      class="champ-container d-flex align-center flex-wrap flex-column">       
         <router-link :to="champs.url">
-          <v-avatar size="100">
+          <v-avatar size="100" class="d-none d-sm-flex">
+          <img               
+            :src="champs.squareimg"
+            :alt="champs.id"
+          />
+          </v-avatar>
+          <v-avatar size="50" class="d-flex d-sm-none">
           <img               
             :src="champs.squareimg"
             :alt="champs.id"
