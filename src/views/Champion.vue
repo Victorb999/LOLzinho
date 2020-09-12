@@ -1,13 +1,29 @@
 <template>
 <div>
   <div v-if="!erro">
-    <div :style="cssHead" class="champion-container"> 
+    <!-- <div :style="cssHead" class="champion-container"> 
+      <h1>{{champ.id}}</h1>
+      <h3>{{champ.title}}</h3>
+      <div class="lore">
+        <span >{{champ.lore}}</span>
+      </div>       
+    </div>-->
+    <v-img :src="imgSplashs[0]" class="champion-container hidden-md-and-down" min-height="300" max-height="400" position="20% 20%" >
+      <div class="down-text">
+        <h1>{{champ.id}}</h1>
+        <h3>{{champ.title}}</h3>
+        <div class="lore">
+          <span >{{champ.lore}}</span>
+        </div>
+      </div>
+    </v-img>
+    <v-img :src="imgSplashs[0]" class="champion-container hidden-md-and-up" min-height="300" max-height="400" position="50% 50%" >
       <h1>{{champ.id}}</h1>
       <h3>{{champ.title}}</h3>
       <div class="lore">
         <span >{{champ.lore}}</span>
       </div>
-    </div>
+    </v-img>
 
     <v-container class="skills">
       <h2>Habilidades</h2>

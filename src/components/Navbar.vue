@@ -5,8 +5,8 @@
       
       <v-toolbar-title class="text-uppercase">
         <router-link to="/" class="limpa">
-          <span class="lol">Lol</span>
-          <span class="zinho">zinho</span>
+          <v-img :src="images.lolzinho" class="logo" contain alt="Lolzinho" position="left"></v-img>         
+          
         </router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
@@ -60,7 +60,10 @@ export default {
       languages: [],
       versions:[],
       lang:"",
-      patch:""
+      patch:"",
+      images: {
+              lolzinho: require('@/assets/svg/Prancheta 2.svg')
+            }
     }
   },
   async beforeCreate(){
