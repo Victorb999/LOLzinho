@@ -2,7 +2,7 @@
 <br/>
 <div align="center">
   
-  <h2>LOLzinho</h2>
+  <h2><img src="https://i.ibb.co/jWYqYBR/LOL.png" alt="LOL" border="0"></h2>
 	<a href="https://lolzinho-20fe7.web.app/" target="_blank">
 	<img src="https://i.ibb.co/phBktC5/LOLZINHO.png" alt="LOLZINHO" border="0">
 	</a>
