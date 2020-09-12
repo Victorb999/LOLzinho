@@ -17,7 +17,7 @@
         </div>
       </div>
     </v-img>
-    <v-img :src="imgSplashs[0]" class="champion-container hidden-md-and-up" min-height="300" max-height="400" position="50% 50%" >
+    <v-img :src="imgSplashs[0]" class="champion-container hidden-md-and-up" min-height="300" max-height="500" position="50% 50%" >
       <h1>{{champ.id}}</h1>
       <h3>{{champ.title}}</h3>
       <div class="lore">
