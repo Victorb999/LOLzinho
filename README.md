@@ -4,7 +4,7 @@
   
   <h2>LOLzinho</h2>
 	<a href="https://lolzinho-20fe7.web.app/" target="_blank">
-	<a href="https://imgbb.com/"><img src="https://i.ibb.co/phBktC5/LOLZINHO.png" alt="LOLZINHO" border="0"></a>
+	<img src="https://i.ibb.co/phBktC5/LOLZINHO.png" alt="LOLZINHO" border="0">
 	</a>
   <br />
   <a href="https://imgbb.com/"><img src="https://i.ibb.co/4KR3xSk/PREVIA.jpg" alt="PREVIA" border="0"></a>  
